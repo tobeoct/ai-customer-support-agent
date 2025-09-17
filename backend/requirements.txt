@@ -1,0 +1,48 @@
+# Core FastAPI and Web Framework
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+websockets==12.0
+
+# Database and ORM
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+alembic==1.12.1
+
+# Graph Database
+neo4j==5.14.1
+
+# Caching and Performance
+redis==5.0.1
+
+# AI and ML
+openai>=1.6.1
+langchain==0.0.340
+langgraph==0.0.20
+langchain-openai==0.0.2
+sentence-transformers==2.2.2
+
+# Vector Database and RAG
+chromadb==0.4.17
+
+# Data Validation and Serialization
+pydantic==2.5.0
+typing-extensions>=4.8.0
+
+# Configuration and Environment
+python-dotenv==1.0.0
+
+# HTTP and Async
+httpx==0.25.1
+aiohttp==3.8.6
+
+# Development and Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+
+# Reinforcement Learning & Advanced ML
+numpy==1.24.3
+scipy==1.11.3
+
+# Model Context Protocol (MCP) for Tool Integration
+mcp==1.0.0

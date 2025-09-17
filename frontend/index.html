@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory-Enhanced Customer Support Agent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🧠 Customer Support Agent</h1>
+                    <span class="subtitle">AI-Powered with Memory & Intelligence</span>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Connecting...</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Sidebar with Customer Intelligence -->
+            <aside class="sidebar">
+                <div class="customer-panel">
+                    <h3>Customer Intelligence</h3>
+                    
+                    <div class="intelligence-section">
+                        <h4>🎯 Session Info</h4>
+                        <div class="info-item">
+                            <span class="label">Session ID:</span>
+                            <span class="value" id="sessionId">Not connected</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Customer ID:</span>
+                            <span class="value" id="customerId">Unknown</span>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-section">
+                        <h4>🧠 AI Classification</h4>
+                        <div class="info-item">
+                            <span class="label">Communication Style:</span>
+                            <span class="value" id="commStyle">Analyzing...</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Risk Level:</span>
+                            <span class="value" id="riskLevel">Unknown</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Urgency:</span>
+                            <span class="value" id="urgencyLevel">Normal</span>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-section">
+                        <h4>⚡ Performance</h4>
+                        <div class="info-item">
+                            <span class="label">Response Time:</span>
+                            <span class="value" id="responseTime">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Cache Hits:</span>
+                            <span class="value" id="cacheHits">0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Workflow Success:</span>
+                            <span class="value" id="workflowSuccess">✅</span>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-section">
+                        <h4>🎭 Demo Scenarios</h4>
+                        <button class="scenario-btn" onclick="loadScenario('technical')">🔧 Technical Issue</button>
+                        <button class="scenario-btn" onclick="loadScenario('frustrated')">😠 Frustrated Customer</button>
+                        <button class="scenario-btn" onclick="loadScenario('new')">👋 New Customer</button>
+                        <button class="scenario-btn" onclick="loadScenario('billing')">💳 Billing Question</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Interface -->
+            <section class="chat-container">
+                <div class="chat-header">
+                    <h2>💬 Live Chat</h2>
+                    <div class="workflow-info">
+                        <span class="workflow-badge">6-Node LangGraph Workflow</span>
+                        <span class="cache-badge" id="cacheBadge">Redis Optimized</span>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message agent-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="message-text">
+                                Hello! I'm your Memory-Enhanced Customer Support Agent. I use advanced AI with customer intelligence, 
+                                conversation memory, and graph-based insights to provide personalized support. How can I help you today?
+                            </div>
+                            <div class="message-meta">
+                                <span class="timestamp">Just now</span>
+                                <span class="confidence">Confidence: 100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <div class="message agent-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <div class="typing-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="chat-input-form" id="chatForm">
+                    <div class="input-container">
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Type your message here... (Try: 'My API is not working' or 'I'm having billing issues')" 
+                            autocomplete="off"
+                            maxlength="500"
+                        >
+                        <button type="submit" id="sendButton" disabled>
+                            <span class="send-icon">➤</span>
+                        </button>
+                    </div>
+                    <div class="input-help">
+                        <small>Press Enter to send • The AI analyzes your communication style and provides personalized responses</small>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <!-- System Health Panel -->
+        <div class="health-panel" id="healthPanel">
+            <div class="health-header">
+                <h4>🏥 System Health</h4>
+                <button class="toggle-btn" onclick="toggleHealthPanel()">▼</button>
+            </div>
+            <div class="health-content" id="healthContent" style="display: none;">
+                <div class="health-grid">
+                    <div class="health-item">
+                        <span class="health-label">Workflow:</span>
+                        <span class="health-value" id="workflowHealth">✅ Operational</span>
+                    </div>
+                    <div class="health-item">
+                        <span class="health-label">Redis Cache:</span>
+                        <span class="health-value" id="redisHealth">✅ Connected</span>
+                    </div>
+                    <div class="health-item">
+                        <span class="health-label">Neo4j Graph:</span>
+                        <span class="health-value" id="neo4jHealth">✅ Connected</span>
+                    </div>
+                    <div class="health-item">
+                        <span class="health-label">Database:</span>
+                        <span class="health-value" id="databaseHealth">✅ Connected</span>
+                    </div>
+                    <div class="health-item">
+                        <span class="health-label">Avg Response:</span>
+                        <span class="health-value" id="avgResponse">200-800ms</span>
+                    </div>
+                    <div class="health-item">
+                        <span class="health-label">Cache Hit Rate:</span>
+                        <span class="health-value" id="cacheHitRate">85%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script_simple.js"></script>
+</body>
+</html>
